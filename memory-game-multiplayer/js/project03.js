@@ -1,5 +1,6 @@
 const gameGrid = document.getElementById("gameGrid");
-const moveCounter = document.getElementById("moveCounter");
+const p1Counter = document.getElementById("p1Counter");
+const p2Counter = document.getElementById("p2Counter");
 const timer = document.getElementById("timer");
 const restartBtn = document.getElementById("restartBtn");
 const startGameBtn = document.getElementById("startGameBtn");
@@ -10,11 +11,14 @@ const gameContainer = document.querySelector(".game-container");
 
 let cards = [];
 let flippedCards = [];
-let moves = 0;
+let p1Moves = 0;
+let p2Moves = 0;
 let timerInterval = null;
 let timeElapsed = 0;
 let gridRows = 4;
 let gridCols = 4;
+let turn = true;
+
 
 // List of animal image filenames
 const animalImages = [
@@ -99,8 +103,15 @@ function handleCardClick(e) {
   clickedCard.classList.add("flipped");
 
   if (flippedCards.length === 2) {
-    moves++;
-    moveCounter.textContent = moves;
+    if (turn) {
+      p1Moves++;
+      turn = false;
+    } else {
+      p2Moves++;
+      turn = true;
+    }
+    p1Counter.textContent = p1Moves;
+    p2Counter.textContent = p2Moves;
     checkForMatch();
   }
 }
@@ -113,11 +124,17 @@ function checkForMatch() {
     card1.classList.add("matched");
     card2.classList.add("matched");
     flippedCards = [];
-    
+
     // Check if all cards are matched
     if (document.querySelectorAll(".card.matched").length === cards.length) {
       clearInterval(timerInterval);
-      alert(`Game completed in ${moves} moves and ${formatTime(timeElapsed)}!`);
+      if (p1Moves < p2Moves)
+        alert(`Player 1 Wins! Game completed in ${p1Moves + p2Moves} moves and ${formatTime(timeElapsed)}!`);
+      if (p1Moves > p2Moves)
+        alert(`Player 2 Wins! Game completed in ${p1Moves + p2Moves} moves and ${formatTime(timeElapsed)}!`);
+      else
+        alert(`Draw! Game completed in ${p1Moves + p2Moves} moves and ${formatTime(timeElapsed)}!`);
+
     }
   } else {
     setTimeout(() => {
@@ -142,8 +159,11 @@ function formatTime(seconds) {
 }
 
 function resetGameInfo() {
-  moves = 0;
-  moveCounter.textContent = moves;
+  p1Moves = 0;
+  p2Moves = 0;
+  turn = true;
+  p1Counter.textContent = p1Moves;
+  p2Counter.textContent = p2Moves;
   clearInterval(timerInterval); // ✅ Fix: Clear timer on game reset
   timer.textContent = "00:00";
 }

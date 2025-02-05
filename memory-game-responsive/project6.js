@@ -166,59 +166,59 @@ document.addEventListener("DOMContentLoaded", () => {
   restartButton.addEventListener("click", initializeGame);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const fruitBorderContainer = document.createElement("div");
-  fruitBorderContainer.classList.add("fruit-border");
-  document.body.appendChild(fruitBorderContainer);
+// document.addEventListener("DOMContentLoaded", () => {
+//   const fruitBorderContainer = document.createElement("div");
+//   fruitBorderContainer.classList.add("fruit-border");
+//   document.body.appendChild(fruitBorderContainer);
 
-  const fruitOptions = ["🍎", "🍌", "🍇", "🍓", "🍒", "🍍", "🥝", "🍉"];
-  const fruitSize = 40;
-  let screenWidth = window.innerWidth;
-  let screenHeight = window.innerHeight;
+//   const fruitOptions = ["🍎", "🍌", "🍇", "🍓", "🍒", "🍍", "🥝", "🍉"];
+//   const fruitSize = 40;
+//   let screenWidth = window.innerWidth;
+//   let screenHeight = window.innerHeight;
 
-  function createFruit(x, y) {
-      const fruitItem = document.createElement("div");
-      fruitItem.classList.add("fruit-item");
-      fruitItem.textContent = fruitOptions[Math.floor(Math.random() * fruitOptions.length)];
-      fruitItem.style.position = "absolute";
-      fruitItem.style.left = `${x}px`;
-      fruitItem.style.top = `${y}px`;
+//   function createFruit(x, y) {
+//       const fruitItem = document.createElement("div");
+//       fruitItem.classList.add("fruit-item");
+//       fruitItem.textContent = fruitOptions[Math.floor(Math.random() * fruitOptions.length)];
+//       fruitItem.style.position = "absolute";
+//       fruitItem.style.left = `${x}px`;
+//       fruitItem.style.top = `${y}px`;
 
-      const animations = ["rotateDance", "bounceDance", "wiggleDance"];
-      fruitItem.style.animation = `${animations[Math.floor(Math.random() * animations.length)]} 3s infinite`;
+//       const animations = ["rotateDance", "bounceDance", "wiggleDance"];
+//       fruitItem.style.animation = `${animations[Math.floor(Math.random() * animations.length)]} 3s infinite`;
 
-      fruitBorderContainer.appendChild(fruitItem);
-  }
+//       fruitBorderContainer.appendChild(fruitItem);
+//   }
 
-  function generateFruitBorder() {
-      fruitBorderContainer.innerHTML = "";
-      screenWidth = window.innerWidth;
-      screenHeight = window.innerHeight;
+//   function generateFruitBorder() {
+//       fruitBorderContainer.innerHTML = "";
+//       screenWidth = window.innerWidth;
+//       screenHeight = window.innerHeight;
 
-      const borderPadding = fruitSize * 1.5; // Ensure space around game area
+//       const borderPadding = fruitSize * 1.5; // Ensure space around game area
 
-      for (let x = borderPadding; x < screenWidth - borderPadding; x += fruitSize) {
-          createFruit(x, borderPadding - fruitSize); // Top row
-          createFruit(x, screenHeight - borderPadding); // Bottom row
-      }
+//       for (let x = borderPadding; x < screenWidth - borderPadding; x += fruitSize) {
+//           createFruit(x, borderPadding - fruitSize); // Top row
+//           createFruit(x, screenHeight - borderPadding); // Bottom row
+//       }
 
-      for (let y = borderPadding; y < screenHeight - borderPadding; y += fruitSize) {
-          createFruit(borderPadding - fruitSize, y); // Left column
-          createFruit(screenWidth - borderPadding, y); // Right column
-      }
-  }
+//       for (let y = borderPadding; y < screenHeight - borderPadding; y += fruitSize) {
+//           createFruit(borderPadding - fruitSize, y); // Left column
+//           createFruit(screenWidth - borderPadding, y); // Right column
+//       }
+//   }
 
-  generateFruitBorder();
-  window.addEventListener("resize", generateFruitBorder);
+//   generateFruitBorder();
+//   window.addEventListener("resize", generateFruitBorder);
 
-  const gameContainer = document.querySelector(".game-container");
-  const gameGrid = document.querySelector(".grid");
-  const startButton = document.getElementById("start-button");
+//   const gameContainer = document.querySelector(".game-container");
+//   const gameGrid = document.querySelector(".grid");
+//   const startButton = document.getElementById("start-button");
 
-  startButton.addEventListener("click", () => {
-      gameContainer.style.width = "min(80vw, 600px)"; /* Expand Game */
-      gameContainer.style.top = "calc(50% + 20px)"; /* Move Down */
-      gameGrid.style.display = "grid"; /* Show Grid */
-      generateFruitBorder(); /* Adjust Border */
-  });
-});
+//   startButton.addEventListener("click", () => {
+//       gameContainer.style.width = "min(80vw, 600px)"; /* Expand Game */
+//       gameContainer.style.top = "calc(50% + 20px)"; /* Move Down */
+//       gameGrid.style.display = "grid"; /* Show Grid */
+//       generateFruitBorder(); /* Adjust Border */
+//   });
+// });
